@@ -1,0 +1,26 @@
+{
+    "name": "sport-radar",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "format": "prettier --write ."
+    },
+    "dependencies": {
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "next": "15.0.2",
+        "prettier": "^3.3.3",
+        "prettier-plugin-tailwindcss": "^0.6.8",
+        "react": "19.0.0-rc-02c0e824-20241028",
+        "react-dom": "19.0.0-rc-02c0e824-20241028"
+    },
+    "devDependencies": {
+        "eslint": "^8",
+        "eslint-config-next": "15.0.2",
+        "postcss": "^8"
+    }
+}

@@ -1,2 +1,3 @@
 # sportradar-challange
-Sportradar coding challenge for the coding academy internship 
+
+Sportradar coding challenge for the coding academy internship
