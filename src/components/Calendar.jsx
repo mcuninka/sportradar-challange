@@ -5,6 +5,9 @@ const Calendar = ({ events }) => {
     const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     const calendarDays = Array.from({ length: 31 }, (_, i) => i + 1)
 
+    // Get the first day of January 2024
+    const firstDayOfMonth = new Date("2024-01-01").getDay()
+
     // Function to get events for a specific day
     const getEventsForDay = day => {
         return events.filter(event => {
@@ -22,6 +25,13 @@ const Calendar = ({ events }) => {
                 ))}
             </div>
             <div className="grid grid-cols-7">
+                {/* Add empty divs for week days not from current month */}
+                {Array.from({ length: firstDayOfMonth }).map((_, index) => (
+                    <div
+                        key={`empty-${index}`}
+                        className="h-32 border md:h-40"
+                    ></div>
+                ))}
                 {calendarDays.map(day => (
                     <CalendarDay
                         key={day}
