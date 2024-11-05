@@ -17,7 +17,7 @@ const Calendar = ({ events }) => {
     }
 
     return (
-        <div className="w-full text-center text-black">
+        <div className="w-full text-center">
             <h1 className="mb-4 text-5xl">January</h1>
             <div className="grid grid-cols-7 font-bold">
                 {daysOfWeek.map(day => (
@@ -29,7 +29,7 @@ const Calendar = ({ events }) => {
                 {Array.from({ length: firstDayOfMonth }).map((_, index) => (
                     <div
                         key={`empty-${index}`}
-                        className="h-32 border md:h-40"
+                        className="h-32 border md:h-36"
                     ></div>
                 ))}
                 {calendarDays.map(day => (

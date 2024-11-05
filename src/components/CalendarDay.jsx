@@ -7,6 +7,8 @@ const CalendarDay = ({ day, events }) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedEvent, setSelectedEvent] = useState(null)
 
+    const getCurrentDay = new Date().getDate()
+
     const openModal = e => {
         setIsModalOpen(true)
         setSelectedEvent(e)
@@ -14,11 +16,12 @@ const CalendarDay = ({ day, events }) => {
 
     return (
         <>
-            <div
-                className="flex h-32 flex-col items-center rounded-lg border bg-[#EAB985] p-1 text-center hover:cursor-pointer hover:bg-[#606C38] md:h-40 md:p-5"
-                onClick={() => console.log(day)}
-            >
-                <span>{day}</span>
+            <div className="flex h-32 flex-col items-center rounded-lg border bg-[#EAB985] p-1 text-center hover:cursor-pointer hover:bg-[#606C38] md:h-36 md:p-5">
+                <span
+                    className={`${getCurrentDay === day && "rounded-full bg-black px-2 text-xl text-white"}`}
+                >
+                    {day}
+                </span>
                 {/* Display each event for this day */}
                 {events &&
                     events.map((event, index) => (
@@ -30,7 +33,6 @@ const CalendarDay = ({ day, events }) => {
                             {event.originCompetitionName}
                         </button>
                     ))}
-
                 {/* Modal */}
             </div>
             {isModalOpen && (
