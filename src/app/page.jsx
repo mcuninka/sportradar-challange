@@ -12,8 +12,7 @@ const HomePage = async () => {
     }
     console.log(events.events)
 
-    // return <Calendar events={JSON.parse(JSON.stringify(events.events))} />
-    return <Calendar events={data.data} />
+    return <Calendar events={events.events} />
 }
 
 export default HomePage

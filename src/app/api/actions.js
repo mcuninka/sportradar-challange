@@ -2,6 +2,7 @@
 
 import { connect } from "@/db/db_config"
 import Event from "@/models/Event"
+import { select } from "@nextui-org/react"
 
 //* Create a new event in the database
 export async function createEvent(formData) {
@@ -33,7 +34,7 @@ export async function createEvent(formData) {
 export async function getAllEvents() {
     try {
         await connect()
-        const events = await Event.find()
+        const events = await Event.find().select("-_id").lean()
         return { success: true, events }
     } catch (error) {
         console.error("Error getting events: ", error)
