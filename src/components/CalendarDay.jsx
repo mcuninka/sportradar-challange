@@ -2,21 +2,22 @@
 
 import React, { useState } from "react"
 import EventModal from "./EventModal"
+import { useRouter } from "next/navigation"
+import CalendarEvent from "./CalendarEvent"
 
 const CalendarDay = ({ day, events }) => {
+    const router = useRouter()
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedEvent, setSelectedEvent] = useState(null)
 
     const getCurrentDay = new Date().getDate()
 
-    const openModal = e => {
-        setIsModalOpen(true)
-        setSelectedEvent(e)
-    }
-
     return (
         <>
-            <div className="flex h-24 flex-col items-center rounded-lg border bg-white p-1 text-center hover:cursor-pointer hover:bg-secondary md:h-36 md:p-5">
+            <div
+                className="flex h-24 flex-col items-center rounded-lg border bg-white p-1 text-center hover:cursor-pointer hover:bg-secondary md:h-36 md:p-5"
+                onClick={() => router.push("/add-event")}
+            >
                 <span
                     className={`${getCurrentDay === day && "rounded-full bg-black px-2 text-xl text-white"} font-semibold text-black`}
                 >
@@ -25,13 +26,12 @@ const CalendarDay = ({ day, events }) => {
                 {/* Display each event for this day */}
                 {events &&
                     events.map((event, index) => (
-                        <button
+                        <CalendarEvent
                             key={index}
-                            className="mt-1 w-full overflow-hidden text-ellipsis whitespace-nowrap rounded-md bg-primary text-xs hover:font-bold"
-                            onClick={() => openModal(event)}
-                        >
-                            {event.originCompetitionName}
-                        </button>
+                            event={event}
+                            setIsModalOpen={setIsModalOpen}
+                            setSelectedEvent={setSelectedEvent}
+                        />
                     ))}
                 {/* Modal */}
             </div>
