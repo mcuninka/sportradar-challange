@@ -10,13 +10,13 @@ const Navbar = () => {
         <nav className="flex gap-4 p-4">
             <Link href="/">
                 <span
-                    className={`py-1 text-xl text-black hover:underline ${pathname === "/" && "font-bold"}`}
+                    className={`py-1 text-xl text-white hover:text-secondary ${pathname === "/" && "font-bold"}`}
                 >
                     Calendar
                 </span>
             </Link>
             <Link href="/add-event">
-                <span className="rounded-xl border bg-black px-3 py-1 text-xl text-white">
+                <span className="rounded-xl border bg-primary px-3 py-1 text-xl text-secondary">
                     Add Your Event
                 </span>
             </Link>

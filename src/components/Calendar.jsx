@@ -18,7 +18,7 @@ const Calendar = ({ events }) => {
 
     return (
         <div className="w-full text-center">
-            <h1 className="mb-4 text-5xl">January</h1>
+            <h1 className="mb-4 text-5xl font-bold">NOVEMBER</h1>
             <div className="grid grid-cols-7 font-bold">
                 {daysOfWeek.map(day => (
                     <div key={day}>{day}</div>
@@ -27,10 +27,7 @@ const Calendar = ({ events }) => {
             <div className="grid grid-cols-7">
                 {/* Add empty divs for week days not from current month */}
                 {Array.from({ length: firstDayOfMonth }).map((_, index) => (
-                    <div
-                        key={`empty-${index}`}
-                        className="h-32 border md:h-36"
-                    ></div>
+                    <div key={`empty-${index}`}></div>
                 ))}
                 {calendarDays.map(day => (
                     <CalendarDay
