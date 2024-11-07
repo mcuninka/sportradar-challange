@@ -10,13 +10,15 @@ const Navbar = () => {
         <nav className="flex gap-4 p-4">
             <Link href="/">
                 <span
-                    className={`py-1 text-xl text-white hover:text-secondary ${pathname === "/" && "font-bold"}`}
+                    className={`py-1 text-base hover:text-secondary sm:text-xl ${pathname === "/" ? "text-secondary" : "text-white"}`}
                 >
                     Calendar
                 </span>
             </Link>
             <Link href="/add-event">
-                <span className="rounded-xl border bg-primary px-3 py-1 text-xl text-secondary">
+                <span
+                    className={`rounded-xl border bg-primary px-2 text-base hover:text-secondary sm:px-3 sm:py-1 sm:text-xl ${pathname === "/add-event" ? "text-secondary" : "text-white"}`}
+                >
                     Add Your Event
                 </span>
             </Link>

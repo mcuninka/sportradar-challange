@@ -25,7 +25,9 @@ const SportDropdown = () => {
             isRequired
         >
             {sports.map(sport => (
-                <SelectItem key={sport}>{sport}</SelectItem>
+                <SelectItem key={sport} className="text-primary">
+                    {sport}
+                </SelectItem>
             ))}
         </Select>
     )

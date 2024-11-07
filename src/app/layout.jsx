@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
             <body>
                 <Providers>
                     <Navbar />
-                    <main className="flex flex-col items-center px-4">
+                    <main className="flex h-[calc(100vh-4.375rem-1px)] flex-col items-center px-4">
                         {children}
                     </main>
                     <ToastContainer />

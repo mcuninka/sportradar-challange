@@ -17,7 +17,10 @@ const AddEventForm = () => {
     }
 
     return (
-        <form action={handleSubmit} className="flex w-full max-w-3xl flex-col">
+        <form
+            action={handleSubmit}
+            className="flex w-full max-w-3xl flex-col text-primary"
+        >
             <div className="my-4 grid grid-cols-2 gap-x-3 gap-y-4">
                 <SportDropdown />
                 <InputField label="Name" name="name" type="text" />

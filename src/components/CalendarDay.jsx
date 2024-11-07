@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import Modal from "./Modal"
+import EventModal from "./EventModal"
 
 const CalendarDay = ({ day, events }) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -16,7 +16,7 @@ const CalendarDay = ({ day, events }) => {
 
     return (
         <>
-            <div className="flex h-32 flex-col items-center rounded-lg border bg-white p-1 text-center hover:cursor-pointer hover:bg-secondary md:h-36 md:p-5">
+            <div className="flex h-24 flex-col items-center rounded-lg border bg-white p-1 text-center hover:cursor-pointer hover:bg-secondary md:h-36 md:p-5">
                 <span
                     className={`${getCurrentDay === day && "rounded-full bg-black px-2 text-xl text-white"} font-semibold text-black`}
                 >
@@ -36,7 +36,7 @@ const CalendarDay = ({ day, events }) => {
                 {/* Modal */}
             </div>
             {isModalOpen && (
-                <Modal
+                <EventModal
                     selectedEvent={selectedEvent}
                     isModalOpen={isModalOpen}
                     setIsModalOpen={setIsModalOpen}
