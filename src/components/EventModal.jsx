@@ -14,7 +14,7 @@ const EventModal = ({ selectedEvent, setIsModalOpen }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="relative mx-4 w-full max-w-md rounded-lg bg-white p-6 text-primary shadow-lg">
+            <div className="relative mx-4 w-full max-w-md rounded-lg bg-white p-6 text-center text-primary shadow-lg">
                 <h1 className="text-2xl">
                     {selectedEvent.originCompetitionName}
                 </h1>
