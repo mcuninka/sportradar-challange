@@ -1,28 +1,27 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Select, SelectItem } from "@nextui-org/react"
 
-const SportDropdown = () => {
+const SportDropdown = ({ defaultValue }) => {
     const sports = [
         "Football",
         "Basketball",
-        "Tennis",
+        "Hockey",
         "Volleyball",
         "Handball",
         "Baseball",
-        "Rugby",
-        "Cricket",
-        "Golf",
-        "Table Tennis",
-        "Formula 1"
+        "Rugby"
     ]
+
     return (
         <Select
+            key={defaultValue || "default-key-sport"}
             label="Sport"
             name="sport"
             variant="flat"
             size="lg"
             placeholder="Choose Sport"
             isRequired
+            defaultSelectedKeys={[defaultValue]}
         >
             {sports.map(sport => (
                 <SelectItem key={sport} className="text-primary">

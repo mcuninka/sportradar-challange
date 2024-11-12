@@ -9,6 +9,22 @@ export async function createEvent(formData) {
     try {
         // Create a new event object from the form data
         const eventData = Object.fromEntries(formData)
+
+        if (
+            (eventData.homeTeamScore && !eventData.awayTeamScore) ||
+            (!eventData.homeTeamScore && eventData.awayTeamScore)
+        ) {
+            return {
+                success: false,
+                message: "Enter score for both teams",
+                data: eventData
+            }
+        }
+
+        if (eventData.homeTeamScore < 0 || eventData.awayTeamScore < 0) {
+            return { success: false, message: "Invalid score", data: eventData }
+        }
+
         const newEvent = new Event({
             sport: eventData.sport,
             originCompetitionName: eventData.name,
@@ -17,7 +33,11 @@ export async function createEvent(formData) {
             dateVenue: eventData.date,
             timeVenueUTC: eventData.time,
             homeTeam: { name: eventData.homeTeam },
-            awayTeam: { name: eventData.awayTeam }
+            awayTeam: { name: eventData.awayTeam },
+            result: {
+                homeGoals: eventData.homeTeamScore,
+                awayGoals: eventData.awayTeamScore
+            }
         })
 
         // Connect to the database and save the event
