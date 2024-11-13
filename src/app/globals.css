@@ -3,14 +3,43 @@
 @tailwind utilities;
 
 body {
+    background-image: url("/sportradarbg.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "source sans pro", sans-serif;
     height: 100vh;
     margin: 0;
     padding: 0;
-    font-family: 'source sans pro', sans-serif;
-    background-image: url('/sportradarbg.webp');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slideInFromLeft 0.7s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(+100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-down {
+    animation: slideDown 0.7s ease-out forwards;
 }
