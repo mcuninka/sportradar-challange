@@ -19,6 +19,13 @@ npm run dev
 pnpm dev
 ```
 
+You will also need `MONGODB_URI` key in your .env (.env.local) file to load and
+store events:
+
+```bash
+MONGODB_URI = mongodb+srv://<user>:<password>@<cluster>.mongodb.net/calendar
+```
+
 ### Description
 
 To view the calendar with events, open
