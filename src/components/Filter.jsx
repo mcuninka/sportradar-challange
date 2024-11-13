@@ -12,7 +12,7 @@ const Filter = ({ filteredSports, setFilteredSports, className }) => {
             selectionMode="multiple"
             size="md"
             placeholder="Filter Sports"
-            defaultSelectedKeys={filteredSports}
+            selectedKeys={filteredSports}
             onSelectionChange={handleSportsChange}
             className={className}
         />

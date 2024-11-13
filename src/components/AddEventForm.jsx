@@ -40,7 +40,7 @@ const AddEventForm = ({ day }) => {
                     size="lg"
                     placeholder="Choose Sport"
                     isRequired={true}
-                    defaultValue={state?.data?.sport}
+                    selectedKeys={[state?.data?.sport]}
                 />
                 <InputField
                     label="Name"

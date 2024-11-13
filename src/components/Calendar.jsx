@@ -29,6 +29,7 @@ const Calendar = ({ events }) => {
             const matchesFilteredSports =
                 !filteredSports?.length ||
                 filteredSports?.some(sport => event.sport === sport)
+
             const eventDate = new Date(event.dateVenue)
             return (
                 eventDate.getDate() === day &&

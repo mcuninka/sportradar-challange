@@ -9,14 +9,17 @@ const SportDropdown = ({
     selectionMode = "single",
     size = "lg",
     placeholder,
-    defaultValue,
+    selectedKeys,
     isRequired = false,
     onSelectionChange,
     className
 }) => {
     return (
         <Select
-            key={defaultValue || "default-key-" + label} // Add a key to the select to force re-render to set the default value
+            key={
+                selectionMode === "single" &&
+                (selectedKeys || "default-key-" + label)
+            } // Add a key to the select to force re-render to set the default value
             label={label}
             aria-label={ariaLabel}
             name={name}
@@ -25,7 +28,7 @@ const SportDropdown = ({
             size={size}
             placeholder={placeholder}
             isRequired={isRequired}
-            defaultSelectedKeys={[defaultValue]}
+            defaultSelectedKeys={selectedKeys}
             onSelectionChange={onSelectionChange}
             className={className}
         >

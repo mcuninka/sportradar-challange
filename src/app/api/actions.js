@@ -28,8 +28,8 @@ export async function createEvent(formData) {
 
         // Check if the score is entered for both teams
         if (
-            (eventData.homeTeamScore == null) !==
-            (eventData.awayTeamScore == null)
+            (eventData.homeTeamScore && !eventData.awayTeamScore) ||
+            (!eventData.homeTeamScore && eventData.awayTeamScore)
         ) {
             return {
                 success: false,
@@ -39,11 +39,7 @@ export async function createEvent(formData) {
         }
 
         // Check if the score is negative
-        if (
-            eventData.homeTeamScore != null &&
-            eventData.awayTeamScore != null &&
-            (eventData.homeTeamScore < 0 || eventData.awayTeamScore < 0)
-        ) {
+        if (eventData.homeTeamScore < 0 || eventData.awayTeamScore < 0) {
             return { success: false, message: "Invalid score", data: eventData }
         }
 
