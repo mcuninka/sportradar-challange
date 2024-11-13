@@ -1,3 +1,5 @@
+//* Desc: Constants used in the app
+
 export const toastMessage = {
     position: "top-right",
     autoClose: 3000,

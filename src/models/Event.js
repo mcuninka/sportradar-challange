@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 
+//* Define the Event schema with the following fields:
 const { Schema } = mongoose
 const eventSchema = new Schema(
     {

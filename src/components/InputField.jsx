@@ -10,7 +10,7 @@ const InputField = ({
 }) => {
     return (
         <Input
-            key={defaultValue || "default-key-" + name}
+            key={defaultValue || "default-key-" + name} // Add a key to the select to force re-render to set the default value
             label={label}
             type={type}
             name={name}

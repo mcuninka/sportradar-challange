@@ -2,7 +2,6 @@
 
 import { connect } from "@/db/db_config"
 import Event from "@/models/Event"
-import { select } from "@nextui-org/react"
 
 //* Create a new event in the database
 export async function createEvent(formData) {
@@ -10,9 +9,27 @@ export async function createEvent(formData) {
         // Create a new event object from the form data
         const eventData = Object.fromEntries(formData)
 
+        // Check if all required fields are present
+        const requiredProfileFields = [
+            { name: "sport", message: "Sport is mandatory" },
+            { name: "name", message: "Name is mandatory" },
+            { name: "stage", message: "Stage is mandatory" },
+            { name: "stadium", message: "Stadium is mandatory" },
+            { name: "date", message: "Date is mandatory" },
+            { name: "time", message: "Time is mandatory" }
+        ]
+
+        const missingField = requiredProfileFields.find(
+            ({ name }) => !eventData[name]
+        )
+        if (missingField) {
+            return { success: false, message: missingField.message }
+        }
+
+        // Check if the score is entered for both teams
         if (
-            (eventData.homeTeamScore && !eventData.awayTeamScore) ||
-            (!eventData.homeTeamScore && eventData.awayTeamScore)
+            (eventData.homeTeamScore == null) !==
+            (eventData.awayTeamScore == null)
         ) {
             return {
                 success: false,
@@ -21,10 +38,16 @@ export async function createEvent(formData) {
             }
         }
 
-        if (eventData.homeTeamScore < 0 || eventData.awayTeamScore < 0) {
+        // Check if the score is negative
+        if (
+            eventData.homeTeamScore != null &&
+            eventData.awayTeamScore != null &&
+            (eventData.homeTeamScore < 0 || eventData.awayTeamScore < 0)
+        ) {
             return { success: false, message: "Invalid score", data: eventData }
         }
 
+        // Create a new event object
         const newEvent = new Event({
             sport: eventData.sport,
             originCompetitionName: eventData.name,

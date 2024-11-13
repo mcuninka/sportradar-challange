@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 
+// Create connection to the database based on the URI provided in the .env file
 export async function connect() {
     try {
         mongoose.connect(process.env.MONGODB_URI)

@@ -9,11 +9,13 @@ import Modal from "./Modal"
 import { currentYear, currentMonth, daysOfWeek, monthNames } from "@/lib/types"
 
 const Calendar = ({ events }) => {
+    // State for modal visibility and selected event
     const [isEventModalOpen, setIsEventModalOpen] = useState(false)
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
     const [selectedEvent, setSelectedEvent] = useState(null)
     const [filteredSports, setFilteredSports] = useState(null)
 
+    // Get the number of days in the current month
     const numDays = new Date(currentYear, currentMonth + 1, 0).getDate()
     const calendarDays = Array.from({ length: numDays }, (_, i) => i + 1)
 
@@ -21,7 +23,7 @@ const Calendar = ({ events }) => {
     const firstDayOfMonth =
         (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7
 
-    // Function to get events for a specific day
+    // Function to get filtered events for a specific day
     const getEventsForDay = day => {
         return events?.filter(event => {
             const matchesFilteredSports =
@@ -39,6 +41,7 @@ const Calendar = ({ events }) => {
     return (
         <>
             <div className="slide-down w-full max-w-7xl overflow-y-auto text-center">
+                {/* Responsive filter option */}
                 <div
                     className="absolute right-0 top-0 flex h-12 w-[20%] justify-end"
                     aria-label="Filter"
@@ -81,6 +84,7 @@ const Calendar = ({ events }) => {
                     </div>
                 </div>
             </div>
+
             {/* Filter Modal */}
             {isFilterModalOpen && (
                 <Modal setIsModalOpen={setIsFilterModalOpen}>
@@ -90,6 +94,7 @@ const Calendar = ({ events }) => {
                     />
                 </Modal>
             )}
+
             {/* Event Modal */}
             {isEventModalOpen && (
                 <Modal setIsModalOpen={setIsEventModalOpen}>

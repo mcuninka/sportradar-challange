@@ -16,7 +16,7 @@ const SportDropdown = ({
 }) => {
     return (
         <Select
-            key={defaultValue || "default-key-" + label}
+            key={defaultValue || "default-key-" + label} // Add a key to the select to force re-render to set the default value
             label={label}
             aria-label={ariaLabel}
             name={name}

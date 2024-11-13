@@ -7,12 +7,10 @@ import { toast } from "react-toastify"
 import { toastMessage } from "@/lib/types"
 import SportDropdown from "./SportDropdown"
 import { Button } from "@nextui-org/button"
+import { currentYear, currentMonth, currentDay } from "@/lib/types"
 
 const AddEventForm = ({ day }) => {
-    const currentDate = new Date()
-    const currentMonth = currentDate.getMonth()
-    const currentYear = currentDate.getFullYear()
-
+    // Handle the form submission on server and display a toast message using useActionState hook
     const handleFormAction = async (prevState, formData) => {
         try {
             const res = await createEvent(formData)
@@ -60,13 +58,15 @@ const AddEventForm = ({ day }) => {
                     type="text"
                     defaultValue={state?.data?.stadium}
                 />
+
+                {/* Set default date to today if a user clicks on the navbar link otherwise use the day from the calendar */}
                 <InputField
                     label="Date"
                     name="date"
                     type="date"
                     defaultValue={
                         day === "0"
-                            ? `${currentYear}-${(currentMonth + 1).toString().padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`
+                            ? `${currentYear}-${(currentMonth + 1).toString().padStart(2, "0")}-${currentDay.toString().padStart(2, "0")}`
                             : `${currentYear}-${(currentMonth + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`
                     }
                 />

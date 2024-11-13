@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 
 const Modal = ({ setIsModalOpen, children }) => {
+    // Close modal when pressing the Escape key
     useEffect(() => {
         const handleEscape = event => {
             if (event.key === "Escape") {
