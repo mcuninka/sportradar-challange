@@ -20,7 +20,7 @@ const AddEventForm = ({ day }) => {
                 toast.success(res.message, toastMessage)
             } else {
                 toast.error(res.message, toastMessage)
-                return { ...prevState, data: res.data } // Update the form data
+                return { ...prevState, data: res.data } // Update the inputs with the data that was sent
             }
         } catch (error) {
             console.error("Error adding event: ", error)
@@ -36,7 +36,14 @@ const AddEventForm = ({ day }) => {
             className="slide-in flex w-full max-w-3xl flex-col text-primary"
         >
             <div className="my-4 grid grid-cols-2 gap-x-3 gap-y-4">
-                <SportDropdown defaultValue={state?.data?.sport} />
+                <SportDropdown
+                    label="Sport"
+                    name="sport"
+                    size="lg"
+                    placeholder="Choose Sport"
+                    isRequired={true}
+                    defaultValue={state?.data?.sport}
+                />
                 <InputField
                     label="Name"
                     name="name"
@@ -59,12 +66,8 @@ const AddEventForm = ({ day }) => {
                     type="date"
                     defaultValue={
                         day === "0"
-                            ? currentDate.toLocaleDateString("en-CA")
-                            : new Date(
-                                  currentYear,
-                                  currentMonth,
-                                  day
-                              ).toLocaleDateString("en-CA")
+                            ? `${currentYear}-${(currentMonth + 1).toString().padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`
+                            : `${currentYear}-${(currentMonth + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`
                     }
                 />
                 <InputField

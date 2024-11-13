@@ -2,23 +2,24 @@
 
 import React, { useState } from "react"
 import CalendarDay from "./CalendarDay"
-import EventModal from "./EventModal"
+import EventPage from "./EventPage"
 import Filter from "./Filter"
+import { FaFilter } from "react-icons/fa"
+import Modal from "./Modal"
+import { currentYear, currentMonth, daysOfWeek, monthNames } from "@/lib/types"
 
 const Calendar = ({ events }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isEventModalOpen, setIsEventModalOpen] = useState(false)
+    const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
     const [selectedEvent, setSelectedEvent] = useState(null)
     const [filteredSports, setFilteredSports] = useState(null)
-    const currentDate = new Date()
-    const currentMonth = currentDate.getMonth()
-    const currentYear = currentDate.getFullYear()
+
     const numDays = new Date(currentYear, currentMonth + 1, 0).getDate()
-    const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     const calendarDays = Array.from({ length: numDays }, (_, i) => i + 1)
 
-    // Get the first day of the current month 2024 for offset and subtract 1 to start from Monday
+    // Get the first day of the current month 2024 for offset but starting the week from Monday
     const firstDayOfMonth =
-        new Date(`${currentYear}-${currentMonth + 1}-01`).getDay() - 1
+        (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7
 
     // Function to get events for a specific day
     const getEventsForDay = day => {
@@ -38,11 +39,22 @@ const Calendar = ({ events }) => {
     return (
         <>
             <div className="slide-down w-full max-w-7xl overflow-y-auto text-center">
-                <Filter setFilteredSports={setFilteredSports} />
+                <div
+                    className="absolute right-0 top-0 flex h-12 w-[20%] justify-end"
+                    aria-label="Filter"
+                >
+                    <FaFilter
+                        onClick={() => setIsFilterModalOpen(true)}
+                        className="block sm:hidden"
+                    />
+                    <Filter
+                        filteredSports={filteredSports}
+                        setFilteredSports={setFilteredSports}
+                        className="hidden w-full text-primary sm:block"
+                    />
+                </div>
                 <h1 className="mb-4 text-3xl font-bold sm:text-5xl">
-                    {currentDate
-                        .toLocaleString("default", { month: "long" })
-                        .toUpperCase()}
+                    {monthNames[currentMonth].toUpperCase()} {currentYear}
                 </h1>
                 <div className="mx-auto my-0">
                     <div className="grid grid-cols-7 font-bold">
@@ -62,20 +74,27 @@ const Calendar = ({ events }) => {
                                 key={day}
                                 day={day}
                                 events={getEventsForDay(day)}
-                                setIsModalOpen={setIsModalOpen}
+                                setIsModalOpen={setIsEventModalOpen}
                                 setSelectedEvent={setSelectedEvent}
                             />
                         ))}
                     </div>
                 </div>
             </div>
-            {/* Modal */}
-            {isModalOpen && (
-                <EventModal
-                    selectedEvent={selectedEvent}
-                    isModalOpen={isModalOpen}
-                    setIsModalOpen={setIsModalOpen}
-                />
+            {/* Filter Modal */}
+            {isFilterModalOpen && (
+                <Modal setIsModalOpen={setIsFilterModalOpen}>
+                    <Filter
+                        filteredSports={filteredSports}
+                        setFilteredSports={setFilteredSports}
+                    />
+                </Modal>
+            )}
+            {/* Event Modal */}
+            {isEventModalOpen && (
+                <Modal setIsModalOpen={setIsEventModalOpen}>
+                    <EventPage selectedEvent={selectedEvent} />
+                </Modal>
             )}
         </>
     )

@@ -1,6 +1,5 @@
 import React from "react"
 import CalendarEvent from "./CalendarEvent"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 const CalendarDay = ({ day, events, setIsModalOpen, setSelectedEvent }) => {
@@ -10,10 +9,10 @@ const CalendarDay = ({ day, events, setIsModalOpen, setSelectedEvent }) => {
     return (
         <div
             onClick={() => router.push(`/add-event/${day}`)}
-            className="flex h-24 flex-col items-center rounded-lg border bg-white p-1 text-center hover:cursor-pointer hover:bg-secondary md:h-36 md:p-5"
+            className="flex h-24 flex-col items-center overflow-y-auto rounded-lg border bg-white py-1 hover:cursor-pointer hover:bg-secondary md:h-36 md:p-2"
         >
             <span
-                className={`${getCurrentDay === day && "rounded-full bg-black px-2 text-xl text-white"} font-semibold text-black`}
+                className={`${getCurrentDay === day && "mb-1 rounded-full bg-black px-1 text-xl text-white"} font-semibold text-black`}
             >
                 {day}
             </span>

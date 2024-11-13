@@ -15,9 +15,10 @@ const Navbar = () => {
                     alt="logo"
                     fill
                     className="object-fill"
+                    priority
                 />
             </Link>
-            <div className="ml-auto flex gap-5">
+            <div className="ml-auto flex gap-2 sm:gap-5">
                 <Link href="/">
                     <span
                         className={`py-1 text-base hover:text-secondary sm:text-xl ${pathname === "/" ? "text-secondary" : "text-white"}`}
